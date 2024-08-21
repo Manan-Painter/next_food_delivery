@@ -2,4 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://unpkg.com/@material-tailwind/react@latest/dist/tailwind.min.css');
+.slick-slide > div {
+    margin:0 10px;
+}
