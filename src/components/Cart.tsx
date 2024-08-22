@@ -6,7 +6,7 @@ import { FaCartFlatbed } from "react-icons/fa6";
 const cart = () => {
   return (
     <div>
-      <Link href="/cart" className='flex items-center gap-2'>
+      <Link href="/cart" className="flex items-center gap-2 hover:text-black ">
         <div>
           <FaCartFlatbed />
         </div>
