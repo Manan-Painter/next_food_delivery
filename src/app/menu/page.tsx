@@ -1,3 +1,5 @@
+'use client'
+
 import { MenuType } from "@/types/types";
 import { error } from "console";
 import Link from "next/link";
