@@ -1,6 +1,24 @@
+import { MenuType } from "@/types/types";
+import { error } from "console";
 import Link from "next/link";
 
-export const Menupage = () => {
+const getdata = async () => {
+    const res = await fetch('http://localhost:3000/api/categories',{
+      cache:'no-store'
+    })
+
+    if(!res.ok){
+      throw new Error('failed')
+    }
+
+    return res.json()
+
+}
+
+export const Menupage = async () => {
+
+  const menu:MenuType = await getdata()
+
   return (
     <div className="p-4 lg:px-20 h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col md:flex-row items-center">
       {menu.map((category) => (
@@ -17,42 +35,42 @@ export const Menupage = () => {
 };
 
 // Menu data type
-type Menu = {
-  id: number;
-  slug: string;
-  title: string;
-  desc?: string;
-  img?: string;
-  color: string;
-};
+// type Menu = {
+//   id: number;
+//   slug: string;
+//   title: string;
+//   desc?: string;
+//   img?: string;
+//   color: string;
+// };
 
-// Menu data
-const menu: Menu[] = [
-  {
-    id: 1,
-    slug: "pastas",
-    title: "Italian Pastas",
-    desc: "Savor the taste of perfection with our exquisite Italian handmade pasta menu.",
-    img: "/images/food1.webp",
-    color: "white",
-  },
-  {
-    id: 2,
-    slug: "burgers",
-    title: "Juicy Burgers",
-    desc: "Burger Bliss: Juicy patties, bold flavors, and gourmet toppings galore.",
-    img: "/images/burger.avif",
-    color: "black",
-  },
-  {
-    id: 3,
-    slug: "pizzas",
-    title: "Cheesy Pizzas",
-    desc: "Pizza Paradise: Irresistible slices, mouthwatering toppings, and cheesy perfection.",
-    img: "/images/food1.webp",
-    color: "white",
-  },
-];
+// // Menu data
+// const menu: Menu[] = [
+//   {
+//     id: 1,
+//     slug: "pastas",
+//     title: "Italian Pastas",
+//     desc: "Savor the taste of perfection with our exquisite Italian handmade pasta menu.",
+//     img: "/images/food1.webp",
+//     color: "white",
+//   },
+//   {
+//     id: 2,
+//     slug: "burgers",
+//     title: "Juicy Burgers",
+//     desc: "Burger Bliss: Juicy patties, bold flavors, and gourmet toppings galore.",
+//     img: "/images/burger.avif",
+//     color: "black",
+//   },
+//   {
+//     id: 3,
+//     slug: "pizzas",
+//     title: "Cheesy Pizzas",
+//     desc: "Pizza Paradise: Irresistible slices, mouthwatering toppings, and cheesy perfection.",
+//     img: "/images/food1.webp",
+//     color: "white",
+//   },
+// ];
 
 // Export the page component as the default export
 export default Menupage;
