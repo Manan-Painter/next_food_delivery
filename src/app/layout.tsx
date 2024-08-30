@@ -3,9 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Notification from "@/components/Notification";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import Menu from '@/components/Menu'
 import AuthProvider from "@/components/AuthProvider";
+import QueryProvider from "@/components/Quertprovider";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,12 +25,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AuthProvider>
+          <QueryProvider>
+
           <div>
             <Notification/>
         <Navbar/>
         {children}
-        <Footer/>
+        <ToastContainer position="bottom-right" theme="dark" autoClose={3000}/>
           </div>
+          </QueryProvider>
         </AuthProvider>
         </body>
     </html>

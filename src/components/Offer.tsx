@@ -1,11 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import offer from '../../public/images/offer2.avif'
+import offer from '../../public/images/offer2.png'
 import Countdown from "./Countdown";
 
 const Offer = () => {
   return (
-    <div className="bg-black h-screen flex flex-col md:flex-row md:justify-between md:bg-[url('/offer2.avif')] md:h-[70vh]">
+    <div className="bg-orange-600 h-screen flex flex-col md:flex-row md:justify-between md:bg-[url('/offer2.avif')] md:h-[70vh]">
       {/* TEXT CONTAINER */}
       <div className="flex-1 flex flex-col justify-center items-center text-center gap-8 p-6">
         <h1 className="text-white text-5xl font-bold xl:text-6xl transform transition duration-200 hover:scale-110 hover:shadow-lg">
@@ -16,8 +16,8 @@ const Offer = () => {
           of empowerment. Quickly pontificate parallel.
         </p>
         <Countdown />
-        <button className="bg-orange-600 text-white rounded-md py-3 px-6 transform transition duration-200 hover:scale-110 hover:shadow-4xl">
-          Order Now
+        <button className="bg-white text-orange-600 rounded-md py-3 px-6 transform transition duration-200 hover:scale-110 hover:shadow-4xl">
+          <b>Order Now</b>
         </button>
       </div>
 

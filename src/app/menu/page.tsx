@@ -1,34 +1,36 @@
-'use client'
-
 import { MenuType } from "@/types/types";
-import { error } from "console";
 import Link from "next/link";
+import React from "react";
 
-const getdata = async () => {
-    const res = await fetch('http://localhost:3000/api/categories',{
-      cache:'no-store'
-    })
+const getData = async ()=>{
+  const res = await fetch("http://localhost:3000/api/categories",{
+    cache:"no-store"
+  })
 
-    if(!res.ok){
-      throw new Error('failed')
-    }
+  if(!res.ok){
+    throw new Error("Failed!");
+    
+  }
 
-    return res.json()
-
+  return res.json()
 }
 
-export const Menupage = async () => {
+const MenuPage = async () => {
 
-  const menu:MenuType = await getdata()
-
+  const menu:MenuType = await getData()
   return (
-    <div className="p-4 lg:px-20 h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col md:flex-row items-center">
+    <div className="p-4 lg:px-20 xl:px-40 h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col md:flex-row items-center">
       {menu.map((category) => (
-        <Link href={`/menu/${category.slug}`} key={category.id} className="w-full h-2/3 bg-cover p-8 md:h-1/2" style={{backgroundImage:`url(${category.img})`}}>
+        <Link
+          href={`/menu/${category.slug}`}
+          key={category.id}
+          className="w-full h-1/3 bg-cover p-8 md:h-1/2"
+          style={{ backgroundImage: `url(${category.img})` }}
+        >
           <div className={`text-${category.color} w-1/2`}>
             <h1 className="uppercase font-bold text-3xl">{category.title}</h1>
-            <p className="text-sm my-8">{category.desc}</p>   
-            <button className={`hidden 2xl:block bg-${category.color} bg-orange-600 py-2 px-4 rounded-md`}>Explore</button>
+            <p className="text-sm my-8">{category.desc}</p>
+            <button className={`hidden 2xl:block bg-${category.color} text-${category.color === "black" ? "white" : "red-500"} py-2 px-4 rounded-md`}>Explore</button>
           </div>
         </Link>
       ))}
@@ -36,43 +38,4 @@ export const Menupage = async () => {
   );
 };
 
-// Menu data type
-// type Menu = {
-//   id: number;
-//   slug: string;
-//   title: string;
-//   desc?: string;
-//   img?: string;
-//   color: string;
-// };
-
-// // Menu data
-// const menu: Menu[] = [
-//   {
-//     id: 1,
-//     slug: "pastas",
-//     title: "Italian Pastas",
-//     desc: "Savor the taste of perfection with our exquisite Italian handmade pasta menu.",
-//     img: "/images/food1.webp",
-//     color: "white",
-//   },
-//   {
-//     id: 2,
-//     slug: "burgers",
-//     title: "Juicy Burgers",
-//     desc: "Burger Bliss: Juicy patties, bold flavors, and gourmet toppings galore.",
-//     img: "/images/burger.avif",
-//     color: "black",
-//   },
-//   {
-//     id: 3,
-//     slug: "pizzas",
-//     title: "Cheesy Pizzas",
-//     desc: "Pizza Paradise: Irresistible slices, mouthwatering toppings, and cheesy perfection.",
-//     img: "/images/food1.webp",
-//     color: "white",
-//   },
-// ];
-
-// Export the page component as the default export
-export default Menupage;
+export default MenuPage;

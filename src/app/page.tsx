@@ -1,6 +1,7 @@
 import Feature from "@/components/Feature";
 import Offer from "@/components/Offer";
 import  Slider  from "@/components/Slider";
+import Footer from "@/components/Footer";
 
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <Slider/>
       <Feature />
       <Offer />
+      <Footer/>
     </main>
   );
 }

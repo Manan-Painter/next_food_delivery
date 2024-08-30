@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Menu from './Menu';
 import Cart from '@/components/Cart'
 import { ImPhoneHangUp } from "react-icons/im";
+import UserLink from '@/components/UserLink'
 
   const user = false
 
@@ -33,13 +34,7 @@ const Navbar = () => {
           <ImPhoneHangUp />
           <span>12345</span>
         </div>
-        {!user ? (
-          <Link className="hover:text-black" href="/login">
-            Login
-          </Link>
-        ) : (
-          <Link href="/order">Order</Link>
-        )}
+        <UserLink/>
         <Cart />
       </div>
     </div>

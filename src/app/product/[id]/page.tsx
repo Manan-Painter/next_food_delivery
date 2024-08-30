@@ -1,11 +1,27 @@
-
+import Price from "@/components/Price";
+import { ProductType } from "@/types/types";
 import Image from "next/image";
+import { NextResponse } from "next/server";
+import Deletebutton from "@/components/Deletebutton";
 import React from "react";
-import Price from '@/components/Price'
 
-const SingleProductPage = () => {
+const getData = async (id: string) => {
+  const res = await fetch(`http://localhost:3000/api/product/${id}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return NextResponse.json({message:"failed!"})
+  }
+
+  return res.json();
+};
+
+const SingleProductPage = async ({ params }: { params: { id: string } }) => {
+  const singleProduct: ProductType = await getData(params.id);
+
   return (
-    <div className="p-4 lg:px-20 xl:px-40 h-screen flex flex-col justify-around text-red-500 md:flex-row md:gap-8 md:items-center">
+    <div className="p-4 lg:px-20 xl:px-40 h-screen flex flex-col justify-around text-orange -500 md:flex-row md:gap-8 md:items-center relative">
       {/* IMAGE CONTAINER */}
       {singleProduct.img && (
         <div className="relative w-full h-1/2 md:h-[70%]">
@@ -19,42 +35,16 @@ const SingleProductPage = () => {
       )}
       {/* TEXT CONTAINER */}
       <div className="h-1/2 flex flex-col gap-4 md:h-[70%] md:justify-center md:gap-6 xl:gap-8">
-        <h1 className="text-3xl font-bold uppercase xl:text-5xl">
-          {singleProduct.title}
+        <h1 className="text-3xl font-bold uppercase">
+          <span>{singleProduct.title}</span>
         </h1>
         <p>{singleProduct.desc}</p>
-        <Price
-          price={singleProduct.price}
-          id={singleProduct.id}
-          options={singleProduct.options}
-        />
+        <Price product={singleProduct}/>
       </div>
+      <Deletebutton id={singleProduct.id}/>
     </div>
   );
 };
 
 export default SingleProductPage;
-
-
-export const singleProduct = {
-  id: 1,
-  title: "Sicilian",
-  desc: "Ignite your taste buds with a fiery combination of spicy pepperoni, jalapeños, crushed red pepper flakes, and melted mozzarella cheese, delivering a kick with every bite.",
-  img: "/images/bread.avif",
-  price:  24.9,
-  options: [
-    {
-      title: "Small",
-      additionalPrice: 0,
-    },
-    {
-      title: "Medium",
-      additionalPrice: 4,
-    },
-    {
-      title: "Large",
-      additionalPrice: 6,
-    },
-  ],
-};
 

@@ -1,33 +1,45 @@
 'use client';
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ProductType } from "@/types/types";
 
-
-  const getdata = async (category:string) => {
-    const res = await fetch(
-      `http://localhost:3000/api/product?cat=${category}`,
-      {
-        cache: "no-store",
-      }
-    );
-
-    if (!res.ok) {
-      throw new Error("failed");
-    }
-
-    return res.json();
-  };
-
 type Props = {
-  params:{category:string}
-}
+  params: { category: string };
+};
 
-const CategoryPage = async ({ params }: Props) => {
+const CategoryPage = ({ params }: Props) => {
+  const [product, setProduct] = useState<ProductType[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-  const product:ProductType[] = await getdata(params.category)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(
+          `http://localhost:3000/api/product?cat=${params.category}`,
+          {
+            cache: "no-store",
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const data = await res.json();
+        setProduct(data);
+      } catch (err) {
+        setError((err as Error).message);
+      }
+    };
+
+    fetchData();
+  }, [params.category]);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="flex flex-wrap bg-white text-orange-600">
@@ -50,8 +62,8 @@ const CategoryPage = async ({ params }: Props) => {
           )}
           {/* TEXT CONTAINER */}
           <div className="flex items-center justify-between font-bold">
-            <h1 className="text-2xl uppercase p-2">{item.title}</h1>
-            <h2 className="group-hover:hidden text-xl">${item.price}</h2>
+            <h1 className="text-2xl text-orange-600 uppercase p-2">{item.title}</h1>
+            <h2 className="group-hover:hidden text-orange-600 text-xl">${item.price}</h2>
             <button className="hidden group-hover:block uppercase bg-orange-600 text-white p-2 rounded-md">
               Add to Cart
             </button>
@@ -63,6 +75,7 @@ const CategoryPage = async ({ params }: Props) => {
 };
 
 export default CategoryPage;
+
 
 // export const pizzas = [
 //   {
