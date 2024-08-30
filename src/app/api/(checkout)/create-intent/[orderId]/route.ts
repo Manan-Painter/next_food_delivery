@@ -6,13 +6,13 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { orderId: string } }
 ) {
-  const { id } = params;
+  const { orderId } = params;
 
   const order = await prisma.order.findUnique({
     where: {
-      id: id,
+      id: orderId,
     },
   });
 
@@ -27,7 +27,7 @@ export async function POST(
 
     await prisma.order.update({
       where: {
-        id: id,
+        id: orderId,
       },
       data: { intent_id: paymentIntent.id },
     });
