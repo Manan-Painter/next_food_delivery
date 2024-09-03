@@ -30,7 +30,7 @@ const Navbar = () => {
       </div>
 
       <div className="hidden md:flex gap-4 items-center ">
-        <div className="flex items-center gap-2 bg-orange-400 ransform transition duration-200 hover:scale-110 rounded-xl px-2">
+        <div className="flex items-center gap-2 bg-orange-500 text-white ransform transition duration-200 hover:scale-110 rounded-xl px-2">
           <ImPhoneHangUp />
           <span>12345</span>
         </div>

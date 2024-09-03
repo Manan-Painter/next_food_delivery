@@ -1,21 +1,32 @@
-import prisma from "@/utils/connect";
+import  prisma  from "@/utils/connect";
 import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async (req:NextRequest , {params}: {params: { id: string}}) => {
-    const {id} = params;
 
-    try {
-        const body = await req.json()
+// CHANGE THE STATUS OF AN ORDER
+export const PUT = async (
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) => {
+  const { id } = params;
 
-       const product =  await prisma.product.findUnique({
-            where:{
-                id:id
-            },
-        });
-        return NextResponse.json({product},{status:200})
+  try {
+    const body = await req.json();
 
-    } catch (error) {
-        console.log(error)
-        return NextResponse.json({message:"something went wrong"},{status:500})
-    }
-}
+    await prisma.order.update({
+      where: {
+        id: id,
+      },
+      data: { status: body },
+    });
+    return new NextResponse(
+      JSON.stringify({ message: "Order has been updated!" }),
+      { status: 200 }
+    );
+  } catch (err) {
+    console.log(err);
+    return new NextResponse(
+      JSON.stringify({ message: "Something went wrong!" }),
+      { status: 500 }
+    );
+  }
+};

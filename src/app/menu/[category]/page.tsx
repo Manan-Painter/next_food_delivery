@@ -56,7 +56,7 @@ const CategoryPage = ({ params }: Props) => {
                 src={item.img}
                 alt=""
                 fill
-                className="rounded-s-full rounded-e-full object-contain"
+                className="rounded-3xl object-contain"
               />
             </div>
           )}

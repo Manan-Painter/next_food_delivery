@@ -41,6 +41,29 @@ const Featured = () => {
     autoplay: true,
     autoplaySpeed: 1500,
     pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 1024, // On large screens, use 3 slides
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768, // On medium screens, use 2 slides
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 640, // On small screens, use 1 slide
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   if (loading) {
@@ -48,28 +71,30 @@ const Featured = () => {
   }
 
   return (
-    <div className="w-5/6 m-auto">
-      <div className="mt-5">
+    <div className="w-full sm:w-5/6 mx-auto">
+      <div className="mt-4 grid grid-cols-1 ">
         <Slider {...settings}>
           {data.map((item) => (
             <div
               key={item.id} // Add a key prop for better React performance
               className="bg-white h-auto text-black rounded-lg transform transition duration-500 hover:scale-95 hover:shadow-lg"
             >
-              <div className="h-56 md:h-64 rounded-t-xl bg-orange-600 flex justify-center items-center">
+              <div className="h-40 sm:h-56 md:h-64 rounded-t-xl bg-orange-600 flex  justify-center items-center">
                 <img
                   src={item.img}
                   alt={item.title}
-                  className="h-36 w-36 md:h-44 md:w-44 rounded-full object-cover"
+                  className="h-20 w-20 sm:h-36 sm:w-36 md:h-44 md:w-44 rounded-full object-cover"
                 />
               </div>
-              <div className="flex flex-col justify-center items-center gap-4 p-4">
-                <p className="text-lg md:text-xl font-semibold text-center">
+              <div className="flex flex-col justify-center items-center gap-2 sm:gap-4 p-2 sm:p-4">
+                <p className="text-sm sm:text-lg md:text-3xl font-semibold text-center">
                   {item.title}
                 </p>
-                <p className="text-sm md:text-base text-center">{item.desc}</p>
-                <button className="bg-orange-600 text-white text-sm md:text-lg px-4 md:px-6 py-2 rounded-xl">
-                  {item.price}
+                <p className="text-xs sm:text-sm md:text-base text-center">
+                  {item.desc}
+                </p>
+                <button className="bg-orange-600 text-white text-xs sm:text-sm md:text-lg px-3 sm:px-4 md:px-6 py-1 sm:py-2 rounded-xl">
+                  $ {item.price}
                 </button>
               </div>
             </div>
@@ -77,34 +102,6 @@ const Featured = () => {
         </Slider>
       </div>
     </div>
-  //   <div className="w-screen overflow-x-scroll text-orange-600">
-  //   {/* WRAPPER */}
-  //   <div className="w-max flex">
-  //     {/* SINGLE ITEM */}
-  //     {data.map((item) => (
-  //       <div
-  //         key={item.id}
-  //         className="w-screen h-[60vh] flex flex-col items-center justify-around p-4 hover:bg-orange-600 transition-all duration-300 md:w-[50vw] xl:w-[33vw] xl:h-[90vh]"
-  //       >
-  //         {/* IMAGE CONTAINER */}
-  //         {item.img && (
-  //           <div className="relative flex-1 w-full hover:rotate-[60deg] transition-all duration-500">
-  //             <img src={item.img} alt=""  className="object-contain" />
-  //           </div>
-  //         )}
-  //         {/* TEXT CONTAINER */}
-  //         <div className=" flex-1 flex flex-col items-center justify-center text-center gap-4">
-  //           <h1 className="text-xl font-bold uppercase xl:text-2xl 2xl:text-3xl">{item.title}</h1>
-  //           <p className="p-4 2xl:p-8">{item.desc}</p>
-  //           <span className="text-xl font-bold">${item.price}</span>
-  //           <button className="bg-red-500 text-white p-2 rounded-md">
-  //             Add to Cart
-  //           </button>
-  //         </div>
-  //       </div>
-  //     ))}
-  //   </div>
-  // </div>
   );
 };
 

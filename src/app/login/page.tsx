@@ -6,9 +6,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
 
 const LoginPage = () => {
   const { data, status } = useSession();
+  console.log("data:"+ data)
+  console.log("status: " + status)
   const router = useRouter();
 
   useEffect(() => {
@@ -18,7 +22,11 @@ const LoginPage = () => {
   }, [status, router]);
 
   if (status === 'loading') {
-    return <p>Loading...</p>;
+    return (
+      <p>
+        <AiOutlineLoading3Quarters />
+      </p>
+    );
   }
 
   return (

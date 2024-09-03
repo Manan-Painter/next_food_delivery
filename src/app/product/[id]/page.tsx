@@ -21,7 +21,7 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
   const singleProduct: ProductType = await getData(params.id);
 
   return (
-    <div className="p-4 lg:px-20 xl:px-40 h-screen flex flex-col justify-around text-orange -500 md:flex-row md:gap-8 md:items-center relative">
+    <div className="p-4 lg:px-20 xl:px-40  h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col justify-around text-orange -500 md:flex-row md:gap-8 md:items-center relative">
       {/* IMAGE CONTAINER */}
       {singleProduct.img && (
         <div className="relative w-full h-1/2 md:h-[70%]">
@@ -39,9 +39,9 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
           <span>{singleProduct.title}</span>
         </h1>
         <p>{singleProduct.desc}</p>
-        <Price product={singleProduct}/>
+        <Price product={singleProduct} />
       </div>
-      <Deletebutton id={singleProduct.id}/>
+      <Deletebutton id={singleProduct.id} />
     </div>
   );
 };
