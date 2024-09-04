@@ -6,11 +6,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const Price = ({ product }: { product: ProductType }) => {
-  // Ensure initialTotal is a number by using appropriate checks
-  const initialTotal = product.options?.length
-    ? product.price + (product.options[0]?.additionalPrice || 0)
-    : product.price;
-  const [total, setTotal] = useState<number>(initialTotal);
+  const [total, setTotal] = useState(product.price);
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState(0);
 
@@ -21,14 +17,12 @@ const Price = ({ product }: { product: ProductType }) => {
   }, []);
 
   useEffect(() => {
-    // Calculate total and ensure it is always a number
-    const newTotal = product.options?.length
-      ? quantity *
-        (product.price + (product.options[selected]?.additionalPrice || 0))
-      : quantity * product.price;
-    setTotal(newTotal);
+    if (product.options?.length) {
+      setTotal(
+        quantity * product.price + product.options[selected].additionalPrice
+      );
+    }
   }, [quantity, selected, product]);
-
   const handleCart = () => {
     addToCart({
       id: product.id,

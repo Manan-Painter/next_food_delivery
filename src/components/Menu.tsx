@@ -11,8 +11,7 @@ let user = false
 const links = [
   { id: 1, tittle: "Homepage", url: "/" },
   { id: 2, tittle: "Menu", url: "/menu" },
-  { id: 3, tittle: "Working Hours", url: "/" },
-  { id: 4, tittle: "Contact", url: "/" },
+  { id: 3, tittle: "Contact", url: "/" },
 ];
 
 const Menu = () => {

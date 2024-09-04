@@ -3,7 +3,8 @@ import { useCartstore } from "@/utils/store";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { FaShoppingCart } from "react-icons/fa";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
 
 const CartIcon = () => {
   const { data: session, status } = useSession();

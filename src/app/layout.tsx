@@ -8,6 +8,7 @@ import AuthProvider from "@/components/AuthProvider";
 import QueryProvider from "@/components/Quertprovider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,23 +23,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <AuthProvider>
-          <QueryProvider>
-            <div>
-              <Notification />
-              <Navbar />
-              {children}
-              <ToastContainer
-                position="bottom-right"
-                theme="dark"
-                autoClose={3000}
-              />
-            </div>
-          </QueryProvider>
-        </AuthProvider>
-      </body>
-    </html>
+    <>
+      <html lang="en">
+        <body className={inter.className}>
+          <AuthProvider>
+            <QueryProvider>
+              <div>
+                <Notification />
+                <Navbar />
+                {children}
+                <ToastContainer
+                  position="bottom-right"
+                  theme="dark"
+                  autoClose={3000}
+                />
+              </div>
+            </QueryProvider>
+          </AuthProvider>
+        </body>
+      </html>
+    </>
   );
 }

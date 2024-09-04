@@ -23,10 +23,10 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <div className="-mt-16 mb-8 px-8">
+      <div className="-mt-16 mb-8 px-3">
         <div className="container mx-auto">
-          <div className="py-12 flex justify-center rounded-xl border border-white bg-orange-500 shadow-md shadow-black/5 saturate-200">
-            <div className="my-8 grid gap-6 px-4">
+          <div className="py-12 px-1 flex justify-center rounded-xl border border-white bg-orange-500 shadow-md shadow-black/5 saturate-200">
+            <div className="my-5 grid gap-6 px-2">
               {/* Address */}
               <div className="flex items-center gap-4">
                 <svg
@@ -43,7 +43,7 @@ const Footer = () => {
                   />
                 </svg>
                 <p className="block antialiased font-sans text-base leading-relaxed text-inherit font-bold">
-                  123 Main Street, Los Angeles, CA
+                  123 Main Street, Los Angeles
                 </p>
               </div>
               {/* Phone */}
@@ -104,7 +104,7 @@ const Footer = () => {
             {/* Form */}
             <form action="#">
               <div className="mb-6">
-                <div className="relative w-full rounded-lg bg-slate-100 min-w-[200px] h-11 !min-w-full">
+                <div className="relative w-full rounded-lg bg-slate-100  h-11 ">
                   <input
                     type="text"
                     name="Name"
@@ -117,7 +117,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="mb-4">
-                <div className="relative w-full rounded-lg bg-slate-100 min-w-[200px] h-11 !min-w-full">
+                <div className="relative w-full rounded-lg bg-slate-100 h-11">
                   <input
                     type="email"
                     name="Email"
@@ -130,7 +130,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="mb-4">
-                <div className="relative w-full rounded-lg bg-slate-100 min-w-[200px] h-11 !min-w-full">
+                <div className="relative w-full rounded-lg bg-slate-100 h-11">
                   <textarea
                     name="Message"
                     rows={8}
